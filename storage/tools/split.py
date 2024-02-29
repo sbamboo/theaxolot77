@@ -42,7 +42,8 @@ def generate_chunks(filepath, file_id):
             "algorithm": "crc32",
             "hash": checksum
         },
-        "chunks": chunk_urls
+        "chunks": chunk_urls,
+        "max-size": MAX_CHUNK_SIZE
     }
 
     # Save reference dictionary as JSON
