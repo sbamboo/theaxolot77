@@ -51,7 +51,14 @@
                     if (autoDownload) {
                         // Auto-download the file
                         const blobUrl = URL.createObjectURL(combinedBlob);
-                        window.location.href = blobUrl;
+                        //window.location.href = blobUrl;
+                        const a = document.createElement('a');
+                        a.style.display = 'none';
+                        a.href = blobUrl;
+                        a.download = filename;
+                        document.body.appendChild(a);
+                        a.click();
+                        URL.revokeObjectURL(blobUrl);
                     } else {
                         // Create download link
                         const downloadLink = document.createElement('a');
