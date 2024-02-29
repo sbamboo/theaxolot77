@@ -30,7 +30,7 @@
                     // Output checksum
                     const checksumOutput = document.getElementById('checksumOutput');
                     const checksum = jsonData.checksum.hash;
-                    checksumOutput.innerHTML = `Checksum: ${checksum}`;
+                    checksumOutput.innerHTML = `${checksum}`;
                 } else {
                     // Download file
                     const filename = jsonData.filename;
@@ -51,13 +51,7 @@
                     if (autoDownload) {
                         // Auto-download the file
                         const blobUrl = URL.createObjectURL(combinedBlob);
-                        const a = document.createElement('a');
-                        a.style.display = 'none';
-                        a.href = blobUrl;
-                        a.download = filename;
-                        document.body.appendChild(a);
-                        a.click();
-                        URL.revokeObjectURL(blobUrl);
+                        window.location.href = blobUrl;
                     } else {
                         // Create download link
                         const downloadLink = document.createElement('a');
