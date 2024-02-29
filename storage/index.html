@@ -6,11 +6,14 @@
     <title>File Downloader</title>
 </head>
 <body>
+    <div id="checksumOutput"></div>
+
     <script>
-        // Function to fetch JSON file and download parts
-        async function downloadFile() {
+        // Function to fetch JSON file and download parts or output checksum
+        async function processFile() {
             const urlParams = new URLSearchParams(window.location.search);
             const url = urlParams.get('url');
+            const giveChecksum = urlParams.has('givechecksum');
 
             if (!url) {
                 console.error('URL parameter is missing.');
@@ -22,35 +25,42 @@
                 const response = await fetch(url);
                 const jsonData = await response.json();
 
-                const filename = jsonData.filename;
-                const chunks = jsonData.chunks;
+                if (giveChecksum) {
+                    // Output checksum
+                    const checksumOutput = document.getElementById('checksumOutput');
+                    const checksum = jsonData.checksum.hash;
+                    checksumOutput.innerHTML = `Checksum: ${checksum}`;
+                } else {
+                    // Download file
+                    const filename = jsonData.filename;
+                    const chunks = jsonData.chunks;
+                    const parts = [];
 
-                const parts = [];
+                    // Fetch each part
+                    for (let i = 0; i < chunks.length; i++) {
+                        const partUrl = chunks[i];
+                        const partResponse = await fetch(partUrl);
+                        const partBlob = await partResponse.blob();
+                        parts.push(partBlob);
+                    }
 
-                // Fetch each part
-                for (let i = 0; i < chunks.length; i++) {
-                    const partUrl = chunks[i];
-                    const partResponse = await fetch(partUrl);
-                    const partBlob = await partResponse.blob();
-                    parts.push(partBlob);
+                    // Combine parts into a single Blob
+                    const combinedBlob = new Blob(parts);
+
+                    // Create download link
+                    const downloadLink = document.createElement('a');
+                    downloadLink.href = URL.createObjectURL(combinedBlob);
+                    downloadLink.download = filename;
+                    downloadLink.innerHTML = 'Click here to download the file';
+                    document.body.appendChild(downloadLink);
                 }
-
-                // Combine parts into a single Blob
-                const combinedBlob = new Blob(parts);
-
-                // Create download link
-                const downloadLink = document.createElement('a');
-                downloadLink.href = URL.createObjectURL(combinedBlob);
-                downloadLink.download = filename;
-                downloadLink.innerHTML = 'Click here to download the file';
-                document.body.appendChild(downloadLink);
             } catch (error) {
                 console.error('Error:', error);
             }
         }
 
-        // Call downloadFile function when the page loads
-        window.onload = downloadFile;
+        // Call processFile function when the page loads
+        window.onload = processFile;
     </script>
 </body>
 </html>
