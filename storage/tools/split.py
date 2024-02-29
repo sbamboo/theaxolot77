@@ -4,9 +4,12 @@ import zlib
 import json
 import uuid
 
+# Get parent
+parent = os.path.dirname(os.path.abspath(__file__))
+
 # Define constants
-CHUNKS_DIR = "../chunks"
-CHIBITS_DIR = "../chibits"
+CHUNKS_DIR = f"{parent}/../chunks"
+CHIBITS_DIR = f"{parent}/../chibits"
 MAX_CHUNK_SIZE = 100_000_000  # 100 milion bytes (yes not 100MB)
 BASE_URL = "https://sbamboo.github.io/theaxolot77/storage/chunks"
 
