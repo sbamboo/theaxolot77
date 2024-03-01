@@ -1,3 +1,13 @@
+function convertBytesToLargestUnit(bytesSize) {
+    const units = ['bytes', 'KB', 'MB', 'GB', 'TB', 'PB'];
+    let unitIndex = 0;
+    while (bytesSize >= 1024 && unitIndex < units.length - 1) {
+        bytesSize /= 1024;
+        unitIndex++;
+    }
+    return bytesSize.toFixed(2) + ' ' + units[unitIndex];
+}
+
 // Function to fetch JSON file and download parts or output checksum
 async function processFile(url) {
     if (!url) {
@@ -111,7 +121,8 @@ function showStore() {
                                 stringBuild += `<td>${value.algorithm}: ${value.hash}</td>`;
                             } else if (key == "chunks") {
                                 stringBuild += `<td><a class="temp-link-label" id="placehold_${id}">Generating link...</a></td>`;
-
+                            } else if (["size","max-size"].includes(key)) {
+                                stringBuild += `<td>${convertBytesToLargestUnit(value)}</td>`;
                             } else {
                                 stringBuild += `<td>${value}</td>`;
                             }
