@@ -8,6 +8,7 @@ import uuid
 parent = os.path.dirname(os.path.abspath(__file__))
 
 # Define constants
+CHIBITSVER = "1.0"
 CHUNKS_DIR = f"{parent}/../chunks"
 CHIBITS_DIR = f"{parent}/../chibits"
 MAX_CHUNK_SIZE = 100_000_000  # 100 milion bytes (yes not 100MB)
@@ -45,8 +46,10 @@ def generate_chunks(filepath, file_id):
             "algorithm": "crc32",
             "hash": checksum
         },
+        "type": "split",
         "chunks": chunk_urls,
-        "max-size": MAX_CHUNK_SIZE
+        "max-size": MAX_CHUNK_SIZE,
+        "chibit-version": CHIBITSVER
     }
 
     # Save reference dictionary as JSON

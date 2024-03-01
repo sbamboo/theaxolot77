@@ -4,9 +4,11 @@
         "algorithm": "crc32",
         "hash": 932247049
     },
+    "type": "split",
     "chunks": [
         "https://sbamboo.github.io/theaxolot77/storage/chunks/4b660488-7151-48a4-be3e-72a587d951ed/1.chunk",
         "https://sbamboo.github.io/theaxolot77/storage/chunks/4b660488-7151-48a4-be3e-72a587d951ed/2.chunk"
     ],
-    "max-size": 100000000
+    "max-size": 100000000,
+    "chibit-version": "1.0"
 }
