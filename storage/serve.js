@@ -71,8 +71,8 @@ async function fillInPlaceholder(fileid, filename, chunks) {
 }
 
 function showStore() {
-    //fetch('./chibits/chibits.json')
-    fetch('https://sbamboo.github.io/theaxolot77/storage/chibits/chibits.json')
+    fetch('./chibits/chibits.json')
+    //fetch('https://sbamboo.github.io/theaxolot77/storage/chibits/chibits.json')
         .then(response => response.json())
         .then(data => {
             hasMadeKeys = false;
