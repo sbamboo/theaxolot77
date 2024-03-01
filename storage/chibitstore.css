@@ -91,3 +91,27 @@ main {
 #store-display {
     display: block;
 }
+
+#store-down-table {
+    color: #e4e3e3;
+}
+
+#store-down-table tr th,#store-down-table tr td {
+    padding-top: 2px;
+    padding-bottom: 2px;
+    padding-left: 4px;
+    padding-right: 4px;
+}
+#store-down-table tr th {
+    background-color: #544057;
+}
+#store-down-table tr td {
+    background-color: #3e3e3e;
+}
+
+.link-label,.link-label:active,.link-label:visited {
+    color: #c157d2;
+}
+.link-label:hover {
+    color: #823b8d
+}

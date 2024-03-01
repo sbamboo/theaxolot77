@@ -47,6 +47,7 @@ def generate_chunks(filepath, file_id):
             "algorithm": "crc32",
             "hash": checksum
         },
+        "size": os.path.getsize(filepath),
         "type": "split",
         "chunks": chunk_urls,
         "max-size": MAX_CHUNK_SIZE,
