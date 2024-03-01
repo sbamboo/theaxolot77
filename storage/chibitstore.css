@@ -118,5 +118,24 @@ main {
     color: #c157d2;
 }
 .link-label:hover {
-    color: #823b8d
+    color: #82368d
+}
+
+.center-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+#download-display {
+    color: #e4e3e3;
+}
+
+#download-container {
+    background-color: #1e1e1e;
+    border-radius: 10px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    padding-left: 17px;
+    padding-right: 17px;
 }
