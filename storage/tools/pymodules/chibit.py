@@ -104,7 +104,9 @@ class ChibitConnector():
                 raise Exception(f"Failed to download chunk from {url}! Status code: {response.status_code}")
         return chunks
 
-    def _downloadChunksToJoin(self, fileid, urlList, outputFile, verbose=False, encoding="utf-8") {
+    def _downloadChunksToJoin(self, fileid, urlList, outputFile, verbose=False, encoding="utf-8"):
+        if os.path.exists(outputFile):
+            raise FileExistsError("_downloadChunksToJoin uses appending-IO so opening an existing file will append to it, ensure the file dosen't exist in forehand!")
         max = len(urlList)
         if verbose: print(f"Downloading {max} chunks from urls...")
         with open(outputFile, 'ab') as f:
@@ -121,8 +123,8 @@ class ChibitConnector():
                         onFileExiError = "ignore"
                     response = self.fancyPantsFuncs[1](
                         url = url,
-                        filepath = filepath,
-                        handleGdriveVirWarn = True,
+                        filepath = fileid,
+                        handleGdriveVirWarn = False,
                         loadingBar = verbose,
                         title = titleTx,
                         postDownText = "",
@@ -130,15 +132,14 @@ class ChibitConnector():
                         raise_for_status = False,
                         encoding = encoding,
                         onFileExiError = onFileExiError,
-                        yieldResp = True
+                        yieldResp = True,
+                        stream = f
                     )
                 if response.status_code == 200:
-                    f.write(response.content)
                     if verbose == True and self.reqType == "requests": print(f"Downloaded chunk {ind+1}/{max}")
                     ind += 1
                 else:
                     raise Exception(f"Failed to download chunk from {url}! Status code: {response.status_code}")
-    }
 
     def _joinChunksData(self, chunkContents, verbose=False):
         joinedContent = b''
@@ -186,11 +187,13 @@ class ChibitConnector():
         if self.reqType == "requests":
             response = requests.get(chibitUrl)
         else:
+            if verbose: title = "Fetching chibit..."
+            else: title = ""
             response = self.fancyPantsFuncs[0](
                 url = chibitUrl,
                 handleGdriveVirWarn = True,
                 loadingBar = verbose,
-                title = "Fetching chibit...",
+                title = title,
                 postDownText = "",
                 handleGdriveVirWarnText = "Found gdrive scan warning, attempting to extract link and download from there...",
                 raise_for_status = False,
@@ -219,8 +222,30 @@ class ChibitConnector():
         else:
             return joinedContent
 
-    def getRawFile(self, fileid, outputFile=None, safe=True, verbose=False, tempDir=None, check_encoding="utf-8"):
+    def getRawFile(self, fileid, outputFile=None, safe=True, verbose=False, check_encoding="utf-8"):
+        chibitData = self.getChibit(fileid, verbose)
 
+        chunks = chibitData['chunks']
+
+        if outputFile == None or outputFile == "" or not os.path.exists(outputFile):
+            outputFile = chibitData["filename"]
+
+        self._downloadChunksToJoin(fileid, chunks, outputFile=outputFile, verbose=verbose, encoding=check_encoding)
+
+        if safe:
+            algor = chibitData["checksum"]["algorithm"]
+            hash_ = chibitData["checksum"]["hash"]
+            if algor == "crc32":
+                calculatedHash = self._calculate_crc32_file(outputFile)
+                if calculatedHash != hash_:
+                    print(f"Checksum mismatch for {fileid}")
+                    return None
+                else:
+                    return outputFile
+        else:
+            return outputFile
+
+    def getRawFileWtemp(self, fileid, outputFile=None, safe=True, verbose=False, tempDir=None, check_encoding="utf-8"):
         if tempDir == None: tempDir = os.path.join(os.getcwd(),".chibitTemp")
         if os.path.exists(tempDir): os.remove(tempDir)
         os.mkdir(tempDir)
@@ -251,5 +276,5 @@ class ChibitConnector():
 
 
 from _libfancyPants import getUrlContent_HandleGdriveVirWarn as gurl, downloadFile_HandleGdriveVirWarn as df
-res = ChibitConnector("http://sbamboo.github.io/theaxolot77/storage/",reqType="fancypants",fancyPantsFuncs=[gurl,df]).getRawFile("4b660488-7151-48a4-be3e-72a587d951ed",verbose=True)
+res = ChibitConnector("http://sbamboo.github.io/theaxolot77/storage/",reqType="fancypants",fancyPantsFuncs=[gurl,df]).getRawFile("4b660488-7151-48a4-be3e-72a587d951ed",verbose=False)
 print(res)
