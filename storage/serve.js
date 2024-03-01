@@ -1,8 +1,5 @@
 // Function to fetch JSON file and download parts or output checksum
-async function processFile() {
-    const urlParams = new URLSearchParams(window.location.search);
-    const url = urlParams.get('url');
-
+async function processFile(url) {
     if (!url) {
         console.error('URL parameter is missing.');
         return;
@@ -49,5 +46,30 @@ async function processFile() {
     }
 }
 
+function showStore() {
+    // Fetch ./chibits/chibits.json
+    fetch('https://sbamboo.github.io/theaxolot77/storage/chibits/chibits.json')
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+        });
+}
+
 // Call processFile function when the page loads
-window.onload = processFile;
+window.onload = () => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const url = urlParams.get('url');
+
+    const downloadDisplay = document.getElementById('download-display');
+    const storeDisplay = document.getElementById('store-display');
+
+    if (!url) {
+        downloadDisplay.style.display = 'none';
+        storeDisplay.style.display = 'block';
+        showStore();
+    } else {
+        downloadDisplay.style.display = 'block';
+        storeDisplay.style.display = 'none';
+        processFile(url);
+    }
+};

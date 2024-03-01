@@ -3,16 +3,14 @@
 # Modules for interacting with a chibit-store
 # 
 
-
 # Imports
 import requests, zlib, os
-
-# def downloadFile_HandleGdriveVirWarn(url,filepath=str,handleGdriveVirWarn=True, loadingBar=False, title="Downloading...", postDownText="", handleGdriveVirWarnText="Found gdrive scan warning, attempting to extract link and download from there...", raise_for_status=True, encoding="utf-8", onFileExiError="raise", yieldResp=False)
 
 # Main clas
 class ChibitConnector():
     def __init__(self, hostUrl, reqType="requests", fancyPantsFuncs=None):
         """
+        ChibitConnector is a class for interacting with a chibit-store.
         If 'reqType' is set to 'fancyPants', 'fancyPantsFuncs' must be given with a list of [<forDataFunc>,<forFileFunc>]
         """
         if hostUrl[-1] == '/':
@@ -38,7 +36,10 @@ class ChibitConnector():
 
         self.hostUrl = hostUrl
 
-    def _downloadChunks(self, urlList, verbose=False):
+    def _downloadChunks(self, urlList, verbose=False) -> list:
+        """
+        INTERNAL: Function for downloading chunks from a list of chunk-urls.
+        """
         chunks = []
         max = len(urlList)
         if verbose: print(f"Downloading {max} chunks from urls...")
@@ -67,7 +68,10 @@ class ChibitConnector():
                 raise Exception(f"Failed to download chunk from {url}! Status code: {response.status_code}")
         return chunks
 
-    def _downloadChunksToTemp(self, fileid, urlList, tempDir, verbose=False, encoding="utf-8"):
+    def _downloadChunksToTemp(self, fileid, urlList, tempDir, verbose=False, encoding="utf-8") -> list:
+        """
+        INTERNAL: Function for downloading chunks from a list of chunk-urls, using a temp folder.
+        """
         chunks = []
         max = len(urlList)
         if verbose: print(f"Downloading {max} chunks from urls...")
@@ -105,6 +109,9 @@ class ChibitConnector():
         return chunks
 
     def _downloadChunksToJoin(self, fileid, urlList, outputFile, verbose=False, encoding="utf-8"):
+        """
+        INTERNAL: Function for downloading chunks from a list of chunk-urls, appending them all to a final file.
+        """
         if os.path.exists(outputFile):
             raise FileExistsError("_downloadChunksToJoin uses appending-IO so opening an existing file will append to it, ensure the file dosen't exist in forehand!")
         max = len(urlList)
@@ -136,12 +143,17 @@ class ChibitConnector():
                         stream = f
                     )
                 if response.status_code == 200:
-                    if verbose == True and self.reqType == "requests": print(f"Downloaded chunk {ind+1}/{max}")
+                    if self.reqType == "requests":
+                        f.write(response.content)
+                        if verbose: print(f"Downloaded chunk {ind+1}/{max}")
                     ind += 1
                 else:
                     raise Exception(f"Failed to download chunk from {url}! Status code: {response.status_code}")
 
-    def _joinChunksData(self, chunkContents, verbose=False):
+    def _joinChunksData(self, chunkContents, verbose=False) -> bytes:
+        """
+        INTERNAL: Function for joining together chunkdata to a single byte-string.
+        """
         joinedContent = b''
         if verbose: print(f"Joining {len(chunkContents)} chunks...")
         for chunk in chunkContents:
@@ -149,6 +161,9 @@ class ChibitConnector():
         return joinedContent
 
     def _appendByteFiles(self, firstFile, fileList, verbose=False):
+        """
+        INTERNAL: Function for appending byte-files to a single final file.
+        """
         try:
             # Open the first file in append mode
             with open(firstFile, 'ab') as f:
@@ -170,18 +185,32 @@ class ChibitConnector():
             if verbose: print(f"Error while opening '{firstFile}' for appending: {e}")
 
     def _joinChunksFile(self, chunkFiles, filepath, verbose=False):
+        """
+        INTERNAL: Function to join together chunk-files to a single file.
+        """
         if verbose: print(f"Joining {len(chunkFiles)} chunk-files to 1...")
         self._appendByteFiles(filepath,chunkFiles,verbose)
 
-    def _calculate_crc32(self, data):
+    def _calculate_crc32(self, data) -> int:
+        """
+        INTERNAL: Calculate the crc32 checksum of a byte-string.
+        """
         crc32Value = zlib.crc32(data)
         return crc32Value
     
-    def _calculate_crc32_file(self, filepath):
+    def _calculate_crc32_file(self, filepath) -> int:
+        """
+        INTERNAL: Calculate the crc32 checksum of a file.
+        """
         crc32Value = zlib.crc32(open(filepath, "rb").read())
         return crc32Value
 
-    def getChibit(self, fileid, verbose=False):
+    def getChibit(self, fileid, verbose=False) -> dict:
+        """
+        Function to get a chibit for a fileid.
+
+        Returns chibit-data.
+        """
         chibitUrl = f"{self.hostUrl}/chibits/{fileid}.json"
 
         if self.reqType == "requests":
@@ -201,7 +230,10 @@ class ChibitConnector():
             )
         return response.json()
 
-    def getRaw(self, fileid, safe=True, verbose=False):
+    def getRaw(self, fileid, safe=True, verbose=False) -> bytes:
+        """
+        Function to get the raw content of a chibit-stored file, from a fileid.
+        """
         chibitData = self.getChibit(fileid, verbose)
 
         chunks = chibitData['chunks']
@@ -222,7 +254,10 @@ class ChibitConnector():
         else:
             return joinedContent
 
-    def getRawFile(self, fileid, outputFile=None, safe=True, verbose=False, check_encoding="utf-8"):
+    def getRawFile(self, fileid, outputFile=None, safe=True, verbose=False, check_encoding="utf-8") -> str:
+        """
+        Function to get the raw content of a chibit-stored file, from a fileid, outputting to a file. (Works as a download)
+        """
         chibitData = self.getChibit(fileid, verbose)
 
         chunks = chibitData['chunks']
@@ -245,7 +280,12 @@ class ChibitConnector():
         else:
             return outputFile
 
-    def getRawFileWtemp(self, fileid, outputFile=None, safe=True, verbose=False, tempDir=None, check_encoding="utf-8"):
+    def getRawFileWtemp(self, fileid, outputFile=None, safe=True, verbose=False, tempDir=None, check_encoding="utf-8") -> str:
+        """
+        Function to get the raw content of a chibit-stored file, from a fileid, outputting to a file. (Works as a download)
+
+        Uses a temporary folder for chunk-files, before joining them together to the final file.
+        """
         if tempDir == None: tempDir = os.path.join(os.getcwd(),".chibitTemp")
         if os.path.exists(tempDir): os.remove(tempDir)
         os.mkdir(tempDir)
@@ -255,7 +295,7 @@ class ChibitConnector():
         chunks = chibitData['chunks']
 
         if outputFile == None or outputFile == "" or not os.path.exists(outputFile):
-            outputFile = chibitData["filename"]
+            outputFile = os.path.join(os.getcwd(),chibitData["filename"])
 
         chunkFiles = self._downloadChunksToTemp(fileid, chunks, tempDir=tempDir, verbose=verbose, encoding=check_encoding)
         self._joinChunksFile(chunkFiles, outputFile, verbose)
@@ -267,14 +307,9 @@ class ChibitConnector():
             if algor == "crc32":
                 calculatedHash = self._calculate_crc32_file(outputFile)
                 if calculatedHash != hash_:
-                    print(f"Checksum mismatch for {fileid}")
+                    print(f"Checksum mismatch for {fileid}/{chibitData['filename']}")
                     return None
                 else:
                     return outputFile
         else:
             return outputFile
-
-
-from _libfancyPants import getUrlContent_HandleGdriveVirWarn as gurl, downloadFile_HandleGdriveVirWarn as df
-res = ChibitConnector("http://sbamboo.github.io/theaxolot77/storage/",reqType="fancypants",fancyPantsFuncs=[gurl,df]).getRawFile("4b660488-7151-48a4-be3e-72a587d951ed",verbose=False)
-print(res)

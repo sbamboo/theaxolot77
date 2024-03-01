@@ -12,7 +12,8 @@ CHIBITSVER = "1.0"
 CHUNKS_DIR = f"{parent}/../chunks"
 CHIBITS_DIR = f"{parent}/../chibits"
 MAX_CHUNK_SIZE = 100_000_000  # 100 milion bytes (yes not 100MB)
-BASE_URL = "https://sbamboo.github.io/theaxolot77/storage/chunks"
+BASE_URL = "https://sbamboo.github.io/theaxolot77/storage"
+CHIBITS_LIST = f"{parent}/../chibits/chibits.json"
 
 def generate_chunks(filepath, file_id):
     # Create folder for storing chunks
@@ -37,7 +38,7 @@ def generate_chunks(filepath, file_id):
             part_number += 1
 
     # Generate list of chunk URLs
-    chunk_urls = [f"{BASE_URL}/{file_id}/{chunk_filename}" for chunk_filename in os.listdir(chunk_folder)]
+    chunk_urls = [f"{BASE_URL}/chunks/{file_id}/{chunk_filename}" for chunk_filename in os.listdir(chunk_folder)]
 
     # Create reference dictionary
     reference_data = {
@@ -59,6 +60,18 @@ def generate_chunks(filepath, file_id):
 
     print(f"\nAdded \033[34m{filename}\033[0m to storage with chibit-id \033[35m{file_id}\033[0m using \033[33m{len(chunk_urls)}\033[0m chunks.")
 
+def addFileIdToList(fileid):
+    # Load the chibits list
+    with open(CHIBITS_LIST, "r") as json_file:
+        chibits_list = json.load(json_file)
+
+    # Add the new file ID to the list
+    if fileid not in chibits_list.keys():
+        chibits_list[fileid] = f"{BASE_URL}/chibits/{fileid}.json"
+
+    # Save the updated chibits list
+    with open(CHIBITS_LIST, "w") as json_file:
+        json.dump(chibits_list, json_file, indent=4)
 
 if __name__ == "__main__":
     # Check if filepath is provided as an argument
@@ -73,3 +86,4 @@ if __name__ == "__main__":
 
     # Generate chunks and create reference
     generate_chunks(filepath, file_id)
+    addFileIdToList(file_id)
