@@ -15,7 +15,8 @@ MAX_CHUNK_SIZE = 100_000_000  # 100 milion bytes (yes not 100MB)
 BASE_URL = "https://sbamboo.github.io/theaxolot77/storage"
 CHIBITS_LIST = f"{parent}/../chibits/chibits.json"
 
-def generate_chunks(filepath, file_id):
+def generate_chunks(filepath, file_id, maxOvv=None):
+    if maxOvv == None: maxOvv = MAX_CHUNK_SIZE
     # Create folder for storing chunks
     chunk_folder = os.path.join(CHUNKS_DIR, file_id)
     os.makedirs(chunk_folder, exist_ok=True)
@@ -28,7 +29,7 @@ def generate_chunks(filepath, file_id):
     with open(filepath, "rb") as file:
         part_number = 1
         while True:
-            chunk_data = file.read(MAX_CHUNK_SIZE)
+            chunk_data = file.read(maxOvv)
             if not chunk_data:
                 break
             chunk_filename = f"{part_number}.chunk"
@@ -50,7 +51,7 @@ def generate_chunks(filepath, file_id):
         "size": os.path.getsize(filepath),
         "type": "split",
         "chunks": chunk_urls,
-        "max-size": MAX_CHUNK_SIZE,
+        "max-size": maxOvv,
         "chibit-version": CHIBITSVER
     }
 
@@ -76,15 +77,19 @@ def addFileIdToList(fileid):
 
 if __name__ == "__main__":
     # Check if filepath is provided as an argument
-    if len(sys.argv) != 2:
-        print("Usage: python3 split.py <filepath>")
+    if len(sys.argv) > 3:
+        print("Usage: python3 split.py <filepath> <optional:max-size>")
         sys.exit(1)
 
     filepath = sys.argv[1]
+    maxOvv = None
+
+    if len(sys.argv) > 2:
+        maxOvv = int(sys.argv[2])
 
     # Generate a unique file ID
     file_id = str(uuid.uuid4())
 
     # Generate chunks and create reference
-    generate_chunks(filepath, file_id)
+    generate_chunks(filepath, file_id, maxOvv=maxOvv)
     addFileIdToList(file_id)
