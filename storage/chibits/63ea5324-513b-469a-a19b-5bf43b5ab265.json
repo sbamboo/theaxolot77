@@ -1,0 +1,20 @@
+{
+    "filename": "7 Chunk Test",
+    "checksum": {
+        "algorithm": "crc32",
+        "hash": 2960449376
+    },
+    "size": 167464705,
+    "type": "split",
+    "chunks": [
+        "https://sbamboo.github.io/theaxolot77/storage/chunks/63ea5324-513b-469a-a19b-5bf43b5ab265/1.chunk",
+        "https://sbamboo.github.io/theaxolot77/storage/chunks/63ea5324-513b-469a-a19b-5bf43b5ab265/2.chunk",
+        "https://sbamboo.github.io/theaxolot77/storage/chunks/63ea5324-513b-469a-a19b-5bf43b5ab265/3.chunk",
+        "https://sbamboo.github.io/theaxolot77/storage/chunks/63ea5324-513b-469a-a19b-5bf43b5ab265/4.chunk",
+        "https://sbamboo.github.io/theaxolot77/storage/chunks/63ea5324-513b-469a-a19b-5bf43b5ab265/5.chunk",
+        "https://sbamboo.github.io/theaxolot77/storage/chunks/63ea5324-513b-469a-a19b-5bf43b5ab265/6.chunk",
+        "https://sbamboo.github.io/theaxolot77/storage/chunks/63ea5324-513b-469a-a19b-5bf43b5ab265/7.chunk"
+    ],
+    "max-size": 25000000,
+    "chibit-version": "1.0"
+}
