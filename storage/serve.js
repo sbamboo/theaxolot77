@@ -1,3 +1,5 @@
+var baseUrl = "https://raw.githubusercontent.com/sbamboo/theaxolot77/main/storage/chibits/"
+
 function convertBytesToLargestUnit(bytesSize) {
     const units = ['bytes', 'KB', 'MB', 'GB', 'TB', 'PB'];
     let unitIndex = 0;
@@ -9,7 +11,12 @@ function convertBytesToLargestUnit(bytesSize) {
 }
 
 // Function to fetch JSON file and download parts or output checksum
-async function processFile(url,skipClick=false) {
+async function processFile(url,fileid,skipClick=false) {
+    if ((!url || url == null) && (fileid && fileid != null)) {
+        urlObj = new URL(window.location.href);
+        url = baseUrl + fileid + ".json";
+    }
+
     if (!url) {
         console.error('URL parameter is missing.');
         return;
@@ -154,18 +161,24 @@ function showStore() {
 window.onload = () => {
     const urlParams = new URLSearchParams(window.location.search);
     const url = urlParams.get('url');
+    const fileid = urlParams.get('fileid');
     const skipClick = urlParams.get('manual');
 
     const downloadDisplay = document.getElementById('download-display');
     const storeDisplay = document.getElementById('store-display');
 
-    if (!url) {
+    var _showStore = true;
+    if (url || fileid) {
+        _showStore = false;
+    }
+
+    if (_showStore == true) {
         downloadDisplay.style.display = 'none';
         storeDisplay.style.display = 'block';
         showStore();
     } else {
         downloadDisplay.style.display = 'flex';
         storeDisplay.style.display = 'none';
-        processFile(url,skipClick);
+        processFile(url,fileid,skipClick);
     }
 };
