@@ -10,6 +10,20 @@ function convertBytesToLargestUnit(bytesSize) {
     return bytesSize.toFixed(2) + ' ' + units[unitIndex];
 }
 
+function capitalizeString(inputString, first = true, delim = " ") {
+    if (first) {
+        // Capitalize the first letter of the first word
+        return inputString.charAt(0).toUpperCase() + inputString.slice(1);
+    } else {
+        // Capitalize the first letter of each word
+        let words = inputString.split(delim);
+        for (let i = 0; i < words.length; i++) {
+            words[i] = words[i].charAt(0).toUpperCase() + words[i].slice(1);
+        }
+        return words.join(delim);
+    }
+}
+
 // Function to fetch JSON file and download parts or output checksum
 async function processFile(url,fileid,skipClick=false) {
     if ((!url || url == null) && (fileid && fileid != null)) {
@@ -129,6 +143,16 @@ function showStore() {
                                 if (key == "chunks") {
                                     tableHeaders.innerHTML += `<th>Blobs</th>`;
                                 } else {
+                                    var _first = true
+                                    var _delim = " "
+                                    if (key.includes("-")) {
+                                        _first = false
+                                        _delim = "-"
+                                    } else if (key.includes(" ")) {
+                                        _first = false
+                                        _delim = " "
+                                    }
+                                    key = capitalizeString(key,first=_first, delim=_delim)
                                     tableHeaders.innerHTML += `<th>${key}</th>`;
                                 }
                             }
