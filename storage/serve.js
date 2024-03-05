@@ -115,9 +115,13 @@ async function fillInPlaceholder(fileid, filename, chunks) {
     downloadLink.classList.add("link-label");
 }
 
-function showStore() {
-    fetch('./chibits/chibits.json')
-    //fetch('https://sbamboo.github.io/theaxolot77/storage/chibits/chibits.json')
+function showStore(debug=false) {
+    if (debug == true || debug == "true") {
+        fetchurl = 'https://sbamboo.github.io/theaxolot77/storage/chibits/chibits.json'
+    } else {
+        fetchurl = './chibits/chibits.json'
+    }
+    fetch(fetchurl)
         .then(response => response.json())
         .then(data => {
             hasMadeKeys = false;
@@ -130,7 +134,7 @@ function showStore() {
                         tableBody = document.getElementById("store-down-data");
 
                         const keys = Object.keys(data);
-                        const orderedKeys = ['chunks', ...keys.filter(key => key !== 'chunks')];
+                        var orderedKeys = ['chunks', ...keys.filter(key => key !== 'chunks')];
                         var reorderedObject = {};
                         orderedKeys.forEach(key => {
                         if (data.hasOwnProperty(key)) {
@@ -157,6 +161,7 @@ function showStore() {
                                 }
                             }
                             tableHeaders.innerHTML += `<th>FileID</th>`;
+                            tableHeaders.innerHTML += `<th>Store-Page</th>`;
                             hasMadeKeys = true;
                         }
                         stringBuild = "<tr>"
@@ -173,6 +178,7 @@ function showStore() {
                             }
                         }
                         stringBuild += `<td>${id}</td>`;
+                        stringBuild += `<td><a href=${baseUrl+id+".json"}>store-page</a></td>`;
                         stringBuild += "</tr>";
                         tableBody.innerHTML += stringBuild;
                         fillInPlaceholder(id, data.filename, data.chunks)
@@ -187,6 +193,7 @@ window.onload = () => {
     const url = urlParams.get('url');
     const fileid = urlParams.get('fileid');
     const skipClick = urlParams.get('manual');
+    const dev_dot_debug = urlParams.get('dev_dot_debug_fetch');
 
     const downloadDisplay = document.getElementById('download-display');
     const storeDisplay = document.getElementById('store-display');
@@ -199,7 +206,7 @@ window.onload = () => {
     if (_showStore == true) {
         downloadDisplay.style.display = 'none';
         storeDisplay.style.display = 'block';
-        showStore();
+        showStore(dev_dot_debug);
     } else {
         downloadDisplay.style.display = 'flex';
         storeDisplay.style.display = 'none';
