@@ -1,0 +1,14 @@
+{
+    "filename": "The Axolot 77's addon vanilla-crosshair v.1.0 [1.20+].zip",
+    "checksum": {
+        "algorithm": "crc32",
+        "hash": 1006282471
+    },
+    "size": 11190,
+    "type": "split",
+    "chunks": [
+        "https://sbamboo.github.io/theaxolot77/storage/chunks/23402869-cbc7-4547-8025-ec5e71b7b0be/1.chunk"
+    ],
+    "max-size": 100000000,
+    "chibit-version": "1.0"
+}
