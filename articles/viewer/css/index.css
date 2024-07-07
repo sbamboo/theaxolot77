@@ -36,7 +36,6 @@ code {
     padding-left: 2px;
     padding-right: 2px;
     border-radius: 4px;
-    line-height: 90%;
 }
 
 ul {
@@ -68,6 +67,7 @@ details > ul, details > pre > ul, details > pre > code > ul {
 .collapsible-arrow {
     margin-right: 5px;
     margin-left: 2px;
+    font-weight: bolder;
 }
 
 .collapsible-summary-wrapper {
