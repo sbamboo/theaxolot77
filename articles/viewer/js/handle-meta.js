@@ -1,14 +1,17 @@
+
+const originPathAddition = "/theaxolot77";
+
 function resolveRelativePath(relativePath) {
     const currentUrl = new URL(window.location.href);
 
     if (relativePath.startsWith("/")) {
-        return currentUrl.origin+"/theaxolot77"+relativePath;
+        return currentUrl.origin+originPathAddition+relativePath;
     } else if (relativePath.startsWith("./")) {
         let pathSegments = currentUrl.pathname.split("/");
         pathSegments.pop();
         const newPath = relativePath.substring(2);
         pathSegments.push(newPath);
-        return currentUrl.origin+"/theaxolot77" + pathSegments.join("/");
+        return currentUrl.origin+originPathAddition + pathSegments.join("/");
     } else {
         return relativePath;
     }
