@@ -2,13 +2,13 @@ function resolveRelativePath(relativePath) {
     const currentUrl = new URL(window.location.href);
 
     if (relativePath.startsWith("/")) {
-        return currentUrl.origin+relativePath;
+        return currentUrl.origin+"/theaxolot77"+relativePath;
     } else if (relativePath.startsWith("./")) {
         let pathSegments = currentUrl.pathname.split("/");
         pathSegments.pop();
         const newPath = relativePath.substring(2);
         pathSegments.push(newPath);
-        return currentUrl.origin + pathSegments.join("/");
+        return currentUrl.origin+"/theaxolot77" + pathSegments.join("/");
     } else {
         return relativePath;
     }
