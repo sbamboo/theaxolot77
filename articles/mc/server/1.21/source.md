@@ -1,9 +1,10 @@
-<p hidden>
+<p hidden meta>
 Title: 1.21 Server Update
 Author: TheAxolot77
 AuthorImg: /assets/logo_theaxo77.png
 AuthorTitle: Owner
 Banner: /assets/articles/banners/mc_server_1.21.png
+Favicon: /assets/logo_theaxo77.png
 Tags: minecraft,mc,server,theaxolot77,update,news,changelog
 </p>
 
@@ -35,8 +36,7 @@ Tags: minecraft,mc,server,theaxolot77,update,news,changelog
 
 <br>
 
-- **Switched to Fabric?**
-<br>
+- **Switched to Fabric?**<br>
     To hopefully be more performant aswell as stable i decided to migrate the server to fabric.
     
     This comes with a quite afew changes however:
@@ -52,8 +52,7 @@ Tags: minecraft,mc,server,theaxolot77,update,news,changelog
 
 <br>
 
-- **Server Maintenance**
-<br>
+- **Server Maintenance**<br>
     Because of hosting issues partial-rollbacks have happened.
     I have tried to either recreate or re-add things, if important things are missing contact me.
 
@@ -77,16 +76,15 @@ And of course to enable it in BETA2 do the same but dont set it to `Off`.
 ### BETA2 Notes
 
 <details>
-    <summary>**Mod Changes: (Since 1.20.4_Community_Client_Lite_U3)**</summary>
-    <br>
+    <summary>Mod Changes: (Since 1.20.4_Community_Client_Lite_U3)</summary>
 
-    - <span style="color:red;font-weight:bold;">Missing Mods</span>:
+    - <span style="color:red;font-weight:bold;">Missing Mods:</span>
         * `BetterMountHUD`
         * `CitResewn`
         * `map-compass`
         * `MoreCulling`
 
-    - <span style="color:green;font-weight:bold;">New Mods</span>:
+    - <span style="color:green;font-weight:bold;">New Mods:</span>
         * `Continuity`
         * `Indium` *(Fixes Continuity)*
         * `MapTooltip`
@@ -101,12 +99,12 @@ And of course to enable it in BETA2 do the same but dont set it to `Off`.
         * `RealArrowTip`
         * `ScoreboardOverhaul`
 
-    - <span style="color:blue;font-weight:bold;">Alternatives</span>:
+    - <span style="color:blue;font-weight:bold;">Alternatives:</span>
         * `beenfo` -> `Beehive Tooltip`
         * `lambdynamiclights` -> `RyoamicLights`
         * `midnightcontrols` -> `Controlify`
 
-    - <span style="color:orange;font-weight:bold;">Skipped</span>:
+    - <span style="color:orange;font-weight:bold;">Skipped:</span>
         * `map-in-slot`
         * `memoryleakfix`
         * `ModDetectionPreventer`
@@ -114,15 +112,12 @@ And of course to enable it in BETA2 do the same but dont set it to `Off`.
         * `threadtweak`
 </details>
 
-<br>
-
 ### BETA1 Notes
 
 <details>
-    <summary>**Mod Changes: (Since 1.20.4_Community_Client_Lite_U3)**</summary>
-    <br>
+    <summary>Mod Changes: (Since 1.20.4_Community_Client_Lite_U3)</summary>
 
-    - <span style="color:red;font-weight:bold;">Missing Mods</span>:
+    - <span style="color:red;font-weight:bold;">Missing Mods:</span>
         * `Appleskin`
         * `BetterMountHUD`
         * `CitResewn`
@@ -132,18 +127,18 @@ And of course to enable it in BETA2 do the same but dont set it to `Off`.
         * `map-compass`
         * `MoreCulling`
 
-    - <span style="color:green;font-weight:bold;">New Mods</span>:
+    - <span style="color:green;font-weight:bold;">New Mods:</span>
         * `Continuity`
         * `Indium` *(Fixes Continuity)*
         * `MapTooltip`
         * `NoTelemetry`
 
-    - <span style="color:blue;font-weight:bold;">Alternatives</span>:
+    - <span style="color:blue;font-weight:bold;">Alternatives:</span>
         * `beenfo` -> `Beehive Tooltip`
         * `lambdynamiclights` -> `RyoamicLights`
         * `midnightcontrols` -> `Controlify`
 
-    - <span style="color:orange;font-weight:bold;">Skipped</span>:
+    - <span style="color:orange;font-weight:bold;">Skipped:</span>
         * `map-in-slot`
         * `memoryleakfix`
         * `ModDetectionPreventer`
