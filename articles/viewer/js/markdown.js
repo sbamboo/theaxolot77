@@ -1,3 +1,26 @@
+function replaceItalics(markdown) {
+    // Regular expression to match *italic* text, but not **bold**
+    const italicRegex = /(?<!\*)\*(?!\*)(.*?)(?<!\*)\*(?!\*)/g;
+
+    // Split the markdown by newlines
+    const lines = markdown.split('\n');
+
+    // Process each line
+    const processedLines = lines.map(line => {
+        const trimmedLine = line.trim();
+        // Check if the line doesn't start with "* "
+        if (!trimmedLine.startsWith('* ')) {
+            // Replace *italic* with <i>italic</i> in the line
+            return line.replace(italicRegex, (match, p1) => `<i>${p1}</i>`);
+        }
+        // Return the line as is if it starts with "* "
+        return line;
+    });
+
+    // Join the lines back together
+    return processedLines.join('\n');
+}
+
 async function loadMarkdownContent(element, markdownUrl) {
     // Step 1: Fill the element with a loading message
     const loadingMessage = document.createElement('p');
@@ -23,7 +46,7 @@ async function loadMarkdownContent(element, markdownUrl) {
         //contentParagraph.textContent = text;
         //element.appendChild(contentParagraph);
 
-        renderMarkdownToHtml(element,text);
+        renderMarkdownToHtml(element, replaceItalics(text) );
 
     } catch (error) {
         // Step 4: Handle fetch error and display error message with refresh link
