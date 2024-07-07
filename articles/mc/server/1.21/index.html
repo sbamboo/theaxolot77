@@ -1,0 +1,15 @@
+<script type="text/javascript">
+    var currentUrl = window.location.href;
+  
+    var urlSegments = currentUrl.split('/');
+    if (urlSegments[urlSegments.length - 1] === 'index.html') {
+      urlSegments.pop();
+    }
+  
+    var savedSegment = urlSegments.pop();
+  
+    var baseUrl = urlSegments.join('/');
+    var newUrl = "https://sbamboo.github.io/docview?markdown=" + baseUrl + "/" + savedSegment + "/source.md";
+  
+    window.location.href = newUrl;
+  </script>
