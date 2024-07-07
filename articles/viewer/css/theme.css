@@ -1,0 +1,51 @@
+/* Light mode */
+@media (prefers-color-scheme: light) {
+
+    html,body {
+        background-color: #f8f5f4;
+        color: #2a2a2a;
+    }
+
+    code {
+        background-color: #d4d4d4;
+    }
+
+    h1,h2,h3,h4,h5,h6,b {
+        color: #202020
+    }
+    
+    .returnbtn,.returnbtn:hover,.returnbtn:visited,.returnbtn:active {
+        border: 1px solid #2a263d;
+    } 
+    .returnbtn:hover {
+        border: 1px solid #40376e;
+        background-color: rgba(77, 77, 77, 0.8);
+        color: rgb(216, 190, 103);
+    }
+
+}
+
+/* Dark mode */
+@media (prefers-color-scheme: dark) {
+    html,body {
+        background-color: #181a1c;
+        color: #a5a5a5;
+    }
+
+    code {
+        background-color: #2b2e30;
+    }
+
+    h1,h2,h3,h4,h5,h6,b {
+        color: #e7e9e8
+    }
+    
+    .returnbtn,.returnbtn:hover,.returnbtn:visited,.returnbtn:active {
+        border: 1px solid #2a263d;
+    } 
+    .returnbtn:hover {
+        border: 1px solid #40376e;
+        background-color: rgba(77, 77, 77, 0.8);
+        color: rgb(216, 190, 103);
+    }
+}
