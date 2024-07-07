@@ -6,6 +6,7 @@ AuthorTitle: Owner
 Banner: /assets/articles/banners/mc_server_1.21.png
 Favicon: /assets/logo_theaxo77.png
 Tags: minecraft,mc,server,theaxolot77,update,news,changelog
+Date: 2024-07-05
 </p>
 
 # 1.21 Server Update
@@ -154,3 +155,6 @@ And of course to enable it in BETA2 do the same but dont set it to `Off`.
 ## Client Resource Pack
 * Ported to 1.21
 * Removed CEM glass-textures, might become sepparate pack later.
+
+## What next?
+Due to the mentioned server-hosting issues I will be looking into alternative hosting providers in the next comming days.

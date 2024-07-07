@@ -76,4 +76,10 @@ async function handleMeta() {
         author.innerHTML = authorText;
     }
 
+    //Date
+    if (metaData.hasOwnProperty("Date")) {
+        const date = document.getElementById("article-date");
+        date.innerText = metaData["Date"];
+    }
+
 }

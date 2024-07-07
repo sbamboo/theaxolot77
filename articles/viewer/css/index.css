@@ -60,7 +60,7 @@ details {
     margin-left: 5px;
 }
 
-details > ul, details > pre > ul, details > pre > code > ul {
+ul, ol, details > ul, details > pre > ul, details > pre > code > ul {
     margin-left: 20px;
 }
 
