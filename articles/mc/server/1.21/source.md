@@ -4,6 +4,7 @@ Author: TheAxolot77
 AuthorImg: /assets/logo_theaxo77.png
 AuthorTitle: Owner
 Banner: /assets/articles/banners/mc_server_1.21.png
+Tags: minecraft,mc,server,theaxolot77,update,news,changelog
 </p>
 
 # 1.21 Server Update
