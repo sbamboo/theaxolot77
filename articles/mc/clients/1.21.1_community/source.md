@@ -36,15 +36,12 @@ They contain additional QoL features compared to the *Lite* clients.
         * `Zoomify`
         * `YourOptionsShallBeRespected`
 
-    - <span style="color:blue;font-weight:bold;">Alternatives:</span>
-        * `beenfo` -> `Beehive Tooltip`
-
     - <span style="color:orange;font-weight:bold;">Skipped:</span>
         * `BadOptimizations`
         * `MapToolTip`
         * `NoTelemetry`
 
-    - <span style="color:white;font-weight:bold;">Moved:</span>
+    - <span style="color:white;font-weight:bold;">Moved *(for now)* to future ***Mooare*** release:</span>
         * `BetterF3`
         * `GiveMeANewSplashText`
         * `ScoreboardOverhaul`
