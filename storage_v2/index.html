@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chibit Store - Store</title>
+    <script src="./serve.js"></script>
+    <link rel="stylesheet" href="chibitstore.css">
+    <link rel="icon" type="image/png" href="./logo.png">
+</head>
+<body>
+    <header id="site-header" class="hidable-header">
+        <div class="horiz-flex">
+            <div id="site-name-container" class="horiz-flex">
+                <a id="site-logo-wrapper" href="./index.html">
+                    <img id="site-logo" src="./logo.png" alt="logo">
+                </a>
+                <div id="site-name" class="vert-flex">
+                    <div class="center-text-wrapper">
+                        <h1>Chibit Store</h1>
+                    </div>    
+                    <div class="center-text-wrapper">
+                        <a id="site-about" href="./about.html">Giving the internet chibits!</a>
+                    </div>
+                </div>
+            </div>
+            <div class="header-vert-sep"></div>
+        </div>
+    </header>
+    <div id="download-display" class="center-container">
+        <div id="download-container">
+            <h2 id="download-info">Downloading Chibit...</h2>
+            <p id="download-info-filen">Filename: FILENAME</p>
+            <p id="download-info-size">Size: FILESIZE</p>
+            <p id="download-info-checks">Checksum: HASH_ALGORITHM</p>
+            <br>
+            <i id="download-info-url"></i>
+        </div>
+    </div>
+    <div id="store-display">
+        <h1 id="store-down-title" class="spaced-header">Storage Entries:</h1>
+        <table id="store-down-table">
+            <thead>
+            <tr id="store-down-heads"></tr>
+            </thead>
+            <tbody id="store-down-data">
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

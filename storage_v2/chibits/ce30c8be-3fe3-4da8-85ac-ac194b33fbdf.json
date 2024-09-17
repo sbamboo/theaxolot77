@@ -1,0 +1,15 @@
+{
+    "filename": "example.zip - 2chunks",
+    "checksum": {
+        "algorithm": "crc32",
+        "hash": 932247049
+    },
+    "size": 160380903,
+    "type": "split",
+    "chunks": [
+        "https://sbamboo.github.io/theaxolot77/storage/chunks/ce30c8be-3fe3-4da8-85ac-ac194b33fbdf/1.chunk",
+        "https://sbamboo.github.io/theaxolot77/storage/chunks/ce30c8be-3fe3-4da8-85ac-ac194b33fbdf/2.chunk"
+    ],
+    "max-size": 100000000,
+    "chibit-version": "1.0"
+}
