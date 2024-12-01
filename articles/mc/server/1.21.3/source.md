@@ -16,7 +16,7 @@ Date: 2024-12-01
 
 ## Hosting
 
-Given my previous hosting provider caused a lot of recurring dataloss and had generally slow support times, I have finally switched hosting provider.
+Given my previous hosting provider caused a lot of recurring dataloss and had generally slow support times, I have finally switched hosting provider.<br>
 The server is now generously hosted by @PigiBlossom!
 
 **Because of this the ip and port numbers have changed, please refer to the discord for the new adress!**
