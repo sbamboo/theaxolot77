@@ -27,6 +27,7 @@ The server is now generously hosted by @PigiBlossom!
 **Version Change**
 <br>
 - I haven't had time to update my clients for 1.21.3, until then you may use any other 1.21.3 client or add [ViaFabric](https://modrinth.com/mod/viafabric) or [ViaFabricPlus](https://modrinth.com/mod/viafabricplus) to your modpacks.<br>
+<br>
 
 **Mod Changes**
 <br>
@@ -38,6 +39,7 @@ The server is now generously hosted by @PigiBlossom!
 - Replaced `Fsit` with `!Sit` mod, since it was broken, this sadly means no sitting on players for now :(<br>
 - Replaced `SnowballKB` with my mod `KBSnowballs`.<br>
 - Added `BsBluemap` mod by me.<br>
+<br>
 
 **Datapack / Resourcepack Changes**
 <br>
