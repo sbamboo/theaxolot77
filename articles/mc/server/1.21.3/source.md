@@ -16,31 +16,32 @@ Date: 2024-12-01
 
 ## Hosting
 
-Given my previous hosting provider caused a lot of reoccuring dataloss and had generally slow support times, I have finally switched hosting provider.
+Given my previous hosting provider caused a lot of recurring dataloss and had generally slow support times, I have finally switched hosting provider.
 The server is now generously hosted by @PigiBlossom!
 
 **Because of this the ip and port numbers have changed, please refer to the discord for the new adress!**
 
 
 ## ServerSide
-- **Version Change**
-<br>
-    I haven't had time to update my clients for 1.21.3, until then you may use any other 1.21.3 client or add [ViaFabric](https://modrinth.com/mod/viafabric) or [ViaFabricPlus](https://modrinth.com/mod/viafabricplus) to your modpacks.
 
-- **Mod Changes**
+**Version Change**
 <br>
-    - Replaced `AntiEntityGrief` with `MobExplosionGriefingGamerule`.
-    - Skipped `DisconnectPacketFix` since it is not updated.
-    - Skipped `Horsebuff` since it is not updated.
-    - Skipped `LeashMod` since it is not updated.
-    - Also skipped some other maintenance mods for the same reason.
-    - Replaced `Fsit` with `!Sit` mod, since it was broken, this sadly means no sitting on players for now :(
-    - Replaced `SnowballKB` with my mod `KBSnowballs`.
-    - Added `BsBluemap` mod by me.
+- I haven't had time to update my clients for 1.21.3, until then you may use any other 1.21.3 client or add [ViaFabric](https://modrinth.com/mod/viafabric) or [ViaFabricPlus](https://modrinth.com/mod/viafabricplus) to your modpacks.<br>
 
-- **Datapack / Resourcepack Changes**
+**Mod Changes**
 <br>
-    - Forked MoreArmorTrims to work with 1.21.3, sadly no emmissives for now...
+- Replaced `AntiEntityGrief` with `MobExplosionGriefingGamerule`.<br>
+- Skipped `DisconnectPacketFix` since it is not updated.<br>
+- Skipped `Horsebuff` since it is not updated.<br>
+- Skipped `LeashMod` since it is not updated.<br>
+- Also skipped some other maintenance mods for the same reason.<br>
+- Replaced `Fsit` with `!Sit` mod, since it was broken, this sadly means no sitting on players for now :(<br>
+- Replaced `SnowballKB` with my mod `KBSnowballs`.<br>
+- Added `BsBluemap` mod by me.<br>
+
+**Datapack / Resourcepack Changes**
+<br>
+- Forked MoreArmorTrims to work with 1.21.3, sadly no emmissives for now...<br>
 
 
 ## What next?
