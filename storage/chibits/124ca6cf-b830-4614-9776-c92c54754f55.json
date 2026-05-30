@@ -1,0 +1,14 @@
+{
+    "filename": "The Axolot 77's pack v.0.5.1 [26.1.2] ALPHA-1.zip",
+    "checksum": {
+        "algorithm": "crc32",
+        "hash": 975161333
+    },
+    "size": 2873157,
+    "type": "split",
+    "chunks": [
+        "https://sbamboo.github.io/theaxolot77/storage/chunks/124ca6cf-b830-4614-9776-c92c54754f55/1.chunk"
+    ],
+    "max-size": 100000000,
+    "chibit-version": "1.0"
+}
